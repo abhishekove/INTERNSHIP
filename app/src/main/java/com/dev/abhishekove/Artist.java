@@ -4,10 +4,18 @@ import java.util.List;
 
 public class Artist {
 
-    private String artistName;
+    private String KeyWord,CollectionName,ArtistName;
 
+
+    public String getKeyWord() {
+        return KeyWord;
+    }
+
+    public String getCollectionName() {
+        return CollectionName;
+    }
 
     public String getArtistName() {
-        return artistName;
+        return ArtistName;
     }
 }
