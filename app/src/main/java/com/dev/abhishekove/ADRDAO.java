@@ -26,4 +26,7 @@ public interface ADRDAO {
 
     @Query("SELECT * FROM artistdataroom ORDER BY id")
     LiveData<List<ArtistDataRoom>> getAllArtist();
+
+    @Query("SELECT * FROM artistdataroom WHERE ArtistName LIKE LOWER(:term) OR CollectionName LIKE LOWER(:term)")
+    List<ArtistDataRoom> getDesired(String term);
 }

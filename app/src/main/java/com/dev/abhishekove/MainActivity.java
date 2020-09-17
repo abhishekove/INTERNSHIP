@@ -22,7 +22,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-//    private TextView text;
     private EditText search;
     private Button button;
     private ArtistViewModel viewModel;
@@ -45,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         button=findViewById(R.id.button);
-//        text=findViewById(R.id.text);
         search=findViewById(R.id.search);
 
 
@@ -53,31 +51,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 viewModel.search(search.getText().toString());
-//                Retrofit retrofit=new Retrofit.Builder()
-//                        .baseUrl(" https://itunes.apple.com/")
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//                JsonPlaceHolgerApi jsonPlaceHolgerApi=retrofit.create(JsonPlaceHolgerApi.class);
-//
-//                Call<ArtistList> call=jsonPlaceHolgerApi.getArtists(search.getText().toString());
-//
-//                call.enqueue(new Callback<ArtistList>() {
-//                    @Override
-//                    public void onResponse(Call<ArtistList> call, Response<ArtistList> response) {
-//                        ArtistList resp= response.body();
-//                        List<ArtistDataRoom> res=resp.getResults();
-////                        text.setText("");/
-//                        for(ArtistDataRoom artist:res){
-////                            text.append(artist.getArtistName());
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<ArtistList> call, Throwable t) {
-//
-//                    }
-//                });
             }
         });
     }

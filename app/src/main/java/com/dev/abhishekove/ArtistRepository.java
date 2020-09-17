@@ -24,7 +24,6 @@ public class ArtistRepository {
         allArtist=adrdao.getAllArtist();
     }
     public void search(String term){
-//        Log.d("Check", term);
         Retrofit retrofit=new Retrofit.Builder()
                         .baseUrl(" https://itunes.apple.com/")
                         .addConverterFactory(GsonConverterFactory.create())
@@ -37,18 +36,22 @@ public class ArtistRepository {
                 call.enqueue(new Callback<ArtistList>() {
                     @Override
                     public void onResponse(Call<ArtistList> call, Response<ArtistList> response) {
-                        ArtistList resp= response.body();
-                        List<ArtistDataRoom> res=resp.getResults();
-//                        text.setText("");/
+                        if (!response.isSuccessful())return;
+                        deleteAll();
+                        ArtistList resp = new ArtistList();
+                        List<ArtistDataRoom>res;
+
+                            resp= response.body();
+                            res=resp.getResults();
+
                         for(ArtistDataRoom artist:res){
-//                            text.append(artist.getArtistName());
-//                            Log.d("Check", artist.getArtistName());
                             insert(artist);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ArtistList> call, Throwable t) {
+                        new SearchAsync(adrdao).execute(term);
 
                     }
                 });
@@ -63,6 +66,7 @@ public class ArtistRepository {
     public void delete(ArtistDataRoom artistDataRoom){
         new DeleteAsync(adrdao).execute(artistDataRoom);
     }
+
     public void deleteAll(){
         new DeleteAll(adrdao).execute();
     }
@@ -83,6 +87,22 @@ public class ArtistRepository {
             return null;
         }
     }
+    private class SearchAsync extends AsyncTask<String, Void, List<ArtistDataRoom>> {
+    private ADRDAO adrdao;
+
+        private SearchAsync(ADRDAO adrdao){
+            this.adrdao=adrdao;
+        }
+    @Override
+    protected List<ArtistDataRoom> doInBackground(String... strings) {
+            List<ArtistDataRoom> resp=adrdao.getDesired(strings[0]);
+        deleteAll();
+        for(ArtistDataRoom artist:resp){
+            insert(artist);
+        }
+        return resp;
+    }
+}
     private static class UpdateAsync extends AsyncTask<ArtistDataRoom,Void,Void>{
         private ADRDAO adrdao;
 
