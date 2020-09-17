@@ -3,13 +3,13 @@ package com.dev.abhishekove;
 import java.util.List;
 
 public class  ArtistList{
-   private List<Artist> results;
+   private List<ArtistDataRoom> results;
 
 //    public ArtistList(List<Artist> results) {
 //        this.results = results;
 //    }
 
-    public List<Artist> getResults() {
+    public List<ArtistDataRoom> getResults() {
         return results;
     }
 }

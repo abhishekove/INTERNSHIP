@@ -47,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ArtistList> call, Response<ArtistList> response) {
                         ArtistList resp= response.body();
-                        List<Artist> res=resp.getResults();
+                        List<ArtistDataRoom> res=resp.getResults();
                         text.setText("");
-                        for(Artist artist:res){
+                        for(ArtistDataRoom artist:res){
                             text.append(artist.getArtistName());
                         }
                     }

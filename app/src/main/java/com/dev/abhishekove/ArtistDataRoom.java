@@ -3,14 +3,20 @@ package com.dev.abhishekove;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 @Entity
 public class ArtistDataRoom {
-    public ArtistDataRoom(String keyWord, String collectionName, String artistName) {
+    public ArtistDataRoom() {
+    }
+
+    public ArtistDataRoom(String collectionName, String artistName) {
 //        Name = name;
-        KeyWord = keyWord;
+//        KeyWord = keyWord;
         CollectionName = collectionName;
         ArtistName = artistName;
     }
+
 
     public void setId(int id) {
         this.id = id;
@@ -20,9 +26,6 @@ public class ArtistDataRoom {
 //        return Name;
 //    }
 
-    public String getKeyWord() {
-        return KeyWord;
-    }
 
     public String getCollectionName() {
         return CollectionName;
@@ -32,10 +35,28 @@ public class ArtistDataRoom {
         return ArtistName;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @PrimaryKey(autoGenerate = true)
     private  int id;
 
 //    private String Name;
 
-    private String KeyWord,CollectionName,ArtistName;
+
+
+    @SerializedName("collectionName")
+    private String CollectionName;
+
+    public void setArtistName(String artistName) {
+        ArtistName = artistName;
+    }
+
+    public void setCollectionName(String collectionName) {
+        CollectionName = collectionName;
+    }
+
+    @SerializedName("artistName")
+    private String ArtistName;
 }
