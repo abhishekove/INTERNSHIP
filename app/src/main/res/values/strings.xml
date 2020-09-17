@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="enter_text_to_be_searched">Enter text to be searched</string>
 </resources>
